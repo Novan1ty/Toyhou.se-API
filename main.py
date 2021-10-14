@@ -4,7 +4,10 @@ from flask import Flask, request, render_template
 import requests as Request
 from bs4 import BeautifulSoup
 
-App = Flask('app')
+App = Flask('app', template_folder='Templates')
+
+Title = 'Toyhou.se | API'
+Description = 'Tired from copy and pasting characters\' information? Well i got ya, an API for Toyhou.se'
 
 Characters_URL = { 'message': 'You have to provide a character\'s url' }
 
@@ -16,8 +19,10 @@ def Toyhouse():
     #     ]
     # }
 
-    return render_template('index.html')
-
+    return render_template(
+        'index.html', Title=Title,
+        Description=Description
+    )
 
 @App.route('/creator')
 def Creator():
