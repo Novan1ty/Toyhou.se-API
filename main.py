@@ -1,6 +1,6 @@
 # Toyhou.se | Python ~ 10/12/21; October 12, 2021
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, render_template
 import requests as Request
 from bs4 import BeautifulSoup
 
@@ -10,11 +10,14 @@ Characters_URL = { 'message': 'You have to provide a character\'s url' }
 
 @App.route('/')
 def Toyhouse():
-    return {
-        'Toyhou.se': [
-            '/creator?url='
-        ]
-    }
+    # return {
+    #     'Toyhou.se': [
+    #         '/creator?url='
+    #     ]
+    # }
+
+    return render_template('index.html')
+
 
 @App.route('/creator')
 def Creator():
