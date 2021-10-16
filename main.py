@@ -4,7 +4,7 @@ from flask import Flask, request, render_template
 import requests as Request
 from bs4 import BeautifulSoup
 
-App = Flask('app', template_folder='Templates')
+App = Flask('app', template_folder='Templates', static_url_path='/Templates', static_folder='Templates')
 
 Title = 'Toyhou.se | API'
 Description = 'Tired from copy and pasting characters\' information? Well i got ya, an API for Toyhou.se'
