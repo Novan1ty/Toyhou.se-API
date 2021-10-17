@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "toyhouse-or-python"
+name = "toyhouse-api"
 version = "0.1.0"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = ["Novanity <IntenseMode44@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
