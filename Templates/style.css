@@ -8,27 +8,70 @@
 body {
     color: white;
     font-family: monospace;
-    background: #222222;
+    background: #161616;
 }
 
-.Toyhouse {
-    position: relative;
-    text-align: center;
-    margin-bottom: 85px;
-}
-/* .Toyhouse img {
-    max-width: 100%;
-} */
-
-.Toyhouse div {
+.Toyhouse-Container {
     background-image:
-        linear-gradient(-120deg, transparent, rgba(0, 0, 0, 0.685)),
+        /* linear-gradient(-120deg, transparent, rgba(0, 0, 0, 0.685)), */
         url(./Assets/Why\ does\ Rune\ look\ like\ that..jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     max-width: 100%;
     width: 100%;
     height: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.Toyhouse {
+    margin: 0 100px 0 -60px;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+.Toyhouse-Logo {
+    width: 300px;
+    height: 300px;
+    display: block;
+    /* margin: 0 auto 0 auto; */
+    animation: Float 2s infinite;
+}
+.Toyhouse-Text {
+    display: block;
+    font-size: 90px;
+    /* margin: 0 auto 0 auto; */
+}
+.Novanity {
+    margin: 0 0 0 120px;
+    width: fit-content;
+    display: block;
+}
+.Novanity img {
+    width: 327px;
+    height: 327px;
+    border: 8px solid white;
+    border-radius: 90%;
+    transition: linear 0.2s;
+}
+.Novanity img:hover {
+    border: 8px solid #af8aff;
+    cursor: pointer;
+}
+
+.Toyhouse-API {
+    font-size: 30px;
+    text-align: center;
+    margin: 85px 0 85px 0;
+}
+.Toyhouse-API h1 {
+    padding: 20px 50px 20px 50px;
+    width: fit-content;
+    border: 7px solid white;
+    border-radius: 5px;
+    margin: 0 auto 70px auto;
 }
 
 .Endpoints {
@@ -39,11 +82,9 @@ body {
     grid-template-columns: repeat(3, auto);
     column-gap: 60px;
     row-gap: 40px;
-    margin-bottom: 85px;
-    text-align: center;
     height: fit-content;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding: 15px 0 15px 0;
+    margin: 0 45px 0 45px;
 }
 .Endpoints a {
     background: #5500dd;
@@ -53,12 +94,192 @@ body {
     border-radius: 7px;
     border: 5px solid #2a006e;
     box-shadow:
-        10px 10px 10px #1b1b1b,
-        -8px -8px 10px #292929;
-    text-decoration: none;
-    color: white;
+        10px 10px 10px #0e0e0e,
+        -8px -8px 10px #1d1d1d;
+    transition: linear 0.1s;
 }
 .Endpoints a:active {
     transform: scale(0.9);
-    transition: linear 0.1s;
+}
+
+.Footer {
+    height: 200px;
+    background: rgb(14, 14, 14);
+}
+.Miscellaneous {
+    font-size: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0 20px 0 20px;
+}
+.Miscellaneous p {
+    margin: 90px auto 0 auto;
+    text-align: left;
+}
+.Projects {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    margin: 55px auto 0 auto;
+    grid-gap: 40px;
+    text-align: right;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+@keyframes Float {
+    0% {
+        transform: translateY(-10px);
+    }
+    50% {
+        transform: translateY(5px);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+@media all and (max-width: 1770px) {
+    .Toyhouse-Logo {
+        width: 250px;
+        height: 250px;
+    }
+    .Toyhouse-Text {
+        font-size: 70px;
+    }
+    .Novanity img {
+        width: 280px;
+        height: 280px;
+    }
+}
+@media all and (max-width: 1485px) {
+    .Toyhouse-Logo {
+        width: 180px;
+        height: 180px;
+    }
+    .Toyhouse-Text {
+        font-size: 50px;
+    }
+    .Novanity img {
+        width: 240px;
+        height: 240px;
+    }
+
+    .Toyhouse-API {
+        font-size: 20px;
+    }
+    .Toyhouse-API h1 {
+        border: 5px solid white;
+    }
+    
+    .Endpoints {
+        font-size: 20px;
+    }
+}
+@media all and (max-width: 1015px) {
+    .Toyhouse {
+        margin: 0 -40px 0 0;
+    }
+    .Toyhouse-Logo {
+        width: 140px;
+        height: 140px;
+    }
+    .Toyhouse-Text {
+        font-size: 40px;
+    }
+    .Novanity img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .Miscellaneous {
+        font-size: 17px;
+    }
+    .Miscellaneous p {
+        margin: 90px 0 0 40px;
+    }
+    .Projects {
+        margin: 55px 40px 0 0;
+    }
+}
+@media all and (max-width: 830px) {
+    .Miscellaneous {
+        display: flex;
+        flex-direction: column;
+    }
+    .Miscellaneous p {
+        margin: 52px auto 0 auto;
+        text-align: center;
+    }
+    .Projects {
+        display: flex;
+        margin: 55px auto 0 auto;
+        grid-gap: unset;
+        gap: 25px;
+        text-align: center;
+    }
+}
+@media all and (max-width: 760px) {
+    .Toyhouse-Logo {
+        width: 120px;
+        height: 120px;
+    }
+    .Novanity img {
+        border: 5px solid white;
+    }
+}
+@media all and (max-width: 710px) {
+    .Toyhouse {
+        margin: 0 40px 0 40px;
+    }
+    .Toyhouse-Logo {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto 0 auto;
+    }
+    .Toyhouse-Text {
+        font-size: 60px;
+    }
+    .Novanity {
+        display: none;
+    }
+
+    .Endpoints {
+        grid-template-columns: repeat(2, auto);
+    }
+
+    .Footer {
+        height: unset;
+        min-height: fit-content;
+    }
+    .Projects {
+        flex-direction: column;
+        margin: 55px 30px 65px 30px;
+    }
+}
+@media all and (max-width: 520px) {
+    .Toyhouse-Logo {
+        width: 160px;
+        height: 160px;
+    }
+    .Toyhouse-Text {
+        font-size: 50px;
+        margin-top: 10px;
+    }
+
+    .Endpoints {
+        grid-template-columns: repeat(1, auto);
+    }
+}
+@media all and (max-width: 382px) {
+    .Toyhouse-Logo {
+        width: 130px;
+        height: 130px;
+    }
+    .Toyhouse-Text {
+        font-size: 42px;
+        margin-top: 12px;
+    }
 }

@@ -14,46 +14,94 @@
         <meta name="twitter:creator" content="@_Novan1ty">
         <meta name="twitter:description" content="{{ Description }}">
         <meta name="twitter:image" content="https://i.imgur.com/NRuozzQ.jpg">
-        <meta name="theme-color" content="#c98aff">
+        <meta name="theme-color" content="#ffffff">
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="index, follow">
 
         <link rel="stylesheet" href="./Templates/style.css">
     </head>
+    
     <body>
-        <div class="Toyhouse">
-            <!-- <h1>Toyhou.se | API</h1> -->
-            <!-- <img src="./Templates/Assets/Why does Rune look like that..jpg" alt="Why does Rune look like that..jpg"> -->
+        <!-- Finished at 10/17/21; October 17, 2021 -->
 
-            <div></div>
-        </div>
+        <section class="Toyhouse-Container">
+            <div class="Toyhouse">
+                <img class="Toyhouse-Logo" src="./Templates/Assets/Toyhou.se.png" alt="Toyhou.se">
+                <h1 class="Toyhouse-Text">Toyhou.se | API</h1>
+            </div>
+            <div class="Novanity">
+                <img onclick="Card()" src="./Templates/Assets/Mitch - 1.jpg" alt="Mitch">
+            </div>
+        </section>
 
-        <div class="Endpoints">
-            <a
-                href="https://toyhouse.novan1ty.repl.co/creator?url="
-                target="blank"
-            >Creator</a>
-            <a
-                href="https://toyhouse.novan1ty.repl.co/character?url="
-                target="blank"
-            >Character</a>
-            <a
-                href="https://toyhouse.novan1ty.repl.co/profile?url="
-                target="blank"
-            >Profile</a>
-            <a
-                href="https://toyhouse.novan1ty.repl.co/gallery?url="
-                target="blank"
-            >Gallery</a>
-            <a
-                href="https://toyhouse.novan1ty.repl.co/creation?url="
-                target="blank"
-            >Creation</a>
-            <a
-                href="https://toyhouse.novan1ty.repl.co/tags?url="
-                target="blank"
-            >Tags</a>
-        </div>
+        <section class="Toyhouse-API">
+            <h1>Endpoints</h1>
+            
+            <section class="Endpoints">
+                <a
+                    href="https://toyhouse.novan1ty.repl.co/creator?url="
+                    target="blank"
+                >Creator</a>
+                <a
+                    href="https://toyhouse.novan1ty.repl.co/character?url="
+                    target="blank"
+                >Character</a>
+                <a
+                    href="https://toyhouse.novan1ty.repl.co/profile?url="
+                    target="blank"
+                >Profile</a>
+                <a
+                    href="https://toyhouse.novan1ty.repl.co/gallery?url="
+                    target="blank"
+                >Gallery</a>
+                <a
+                    href="https://toyhouse.novan1ty.repl.co/creation?url="
+                    target="blank"
+                >Creation</a>
+                <a
+                    href="https://toyhouse.novan1ty.repl.co/tags?url="
+                    target="blank"
+                >Tags</a>
+            </section>
+        </section>
+
+        <section class="Footer">
+            <div class="Miscellaneous">
+                <p>© 2021 Novanity</p>
+                <div class="Projects">
+                    <a
+                        href="https://mitch-discord.web.app"
+                        target="blank"
+                    >Mitch</a>
+                    <a
+                        href="https://top.gg/bot/813290586085261322"
+                        target="blank"
+                    >Rune</a>
+                    <a
+                        href="https://nova-oc.web.app/"
+                        target="blank"
+                    >Nova</a>
+                    <a
+                        href="https://npmjs.org/package/toyhou.se"
+                        target="blank"
+                    >Toyhou.se</a>
+                    <a
+                        href="https://npmjs.org/package/discord-character"
+                        target="blank"
+                    >Discord-Character</a>
+                    <a
+                        href="https://novanitys-api.novan1ty.repl.co/"
+                        target="blank"
+                    >Novanity's API</a>
+                </div>
+            </div>
+        </section>
     </body>
+
+    <script>
+        function Card() {
+            return window.open('https://novanity.carrd.co/')
+        }
+    </script>
 <html>
