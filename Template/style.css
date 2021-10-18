@@ -27,7 +27,7 @@ body {
     align-items: center;
 }
 .Toyhouse {
-    margin: 0 100px 0 -60px;
+    margin: 63px 100px 0 -60px;
     display: flex;
     flex-direction: column;
     width: fit-content;
@@ -37,6 +37,7 @@ body {
     height: 300px;
     display: block;
     /* margin: 0 auto 0 auto; */
+    padding: 10px;
     animation: Float 2s infinite;
 }
 .Toyhouse-Text {
@@ -45,7 +46,7 @@ body {
     /* margin: 0 auto 0 auto; */
 }
 .Novanity {
-    margin: 0 0 0 120px;
+    margin: 0 0 35px 120px;
     width: fit-content;
     display: block;
 }
@@ -162,6 +163,9 @@ a {
     .Toyhouse-Text {
         font-size: 50px;
     }
+    .Novanity {
+        margin: 0 0 30px 120px;
+    }
     .Novanity img {
         width: 240px;
         height: 240px;
@@ -188,6 +192,9 @@ a {
     }
     .Toyhouse-Text {
         font-size: 40px;
+    }
+    .Novanity {
+        margin: 0 0 25px 120px;
     }
     .Novanity img {
         width: 200px;
