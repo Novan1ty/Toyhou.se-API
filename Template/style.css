@@ -5,6 +5,9 @@
     overflow-x: hidden;
 }
 
+html {
+    cursor: url('./Assets/Mitch\'s\ Hand.png'), default;
+}
 body {
     color: white;
     font-family: monospace;
@@ -88,6 +91,7 @@ body {
     margin: 0 45px 0 45px;
 }
 .Endpoints a {
+    cursor: url('./Assets/Mitch\'s\ Hand\ -\ Pointer.png'), pointer;
     background: #5500dd;
     padding: 15px;
     padding-left: 30px;
@@ -101,6 +105,11 @@ body {
 }
 .Endpoints a:active {
     transform: scale(0.9);
+}
+.Endpoints a:hover {
+    background: white;
+    border: 5px solid white;
+    color: #5500dd;
 }
 
 .Footer {
