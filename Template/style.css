@@ -61,8 +61,8 @@ body {
     transition: linear 0.2s;
 }
 .Novanity img:hover {
+    cursor: url('./Assets/Mitch\'s\ Hand\ -\ Pointer.png'), pointer;
     border: 8px solid #af8aff;
-    cursor: pointer;
 }
 
 .Toyhouse-API {
@@ -91,7 +91,6 @@ body {
     margin: 0 45px 0 45px;
 }
 .Endpoints a {
-    cursor: url('./Assets/Mitch\'s\ Hand\ -\ Pointer.png'), pointer;
     background: #5500dd;
     padding: 15px;
     padding-left: 30px;
@@ -135,6 +134,7 @@ body {
 }
 
 a {
+    cursor: url('./Assets/Mitch\'s\ Hand\ -\ Pointer.png'), pointer;
     text-decoration: none;
     color: white;
 }
