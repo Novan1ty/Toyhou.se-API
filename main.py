@@ -1,4 +1,9 @@
-# Toyhou.se | Python ~ 10/12/21; October 12, 2021
+# Toyhou.se - API | Python ~ 10/12/21; October 12, 2021
+
+"""
+Started on: 10/12/21; October 12, 2021
+Finished on: 10/18/21; October 18, 2021
+"""
 
 from flask import Flask, request, render_template
 import requests as Request
