@@ -1,11 +1,15 @@
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>{{ Title }}</title>
+        <title>Toyhou.se | API</title>
         <meta name="author" content="Novanity">
-        <meta name="description" content="{{ Description }}">
+        <meta
+            name="description"
+            content="'Tired from copy and pasting characters\' information? Well i got ya, an API for Toyhou.se'"
+        >
         <meta name="keywords" content="Mitch, OC, OC Bot, OC Discord Bot, OC Discord, Mitch The Mairal, Novanity, Toyhouse, Toy, House, Toyhou.se, Character">
-
+        
         <link rel="apple-touch-icon" sizes="180x180" href="./Template/Assets/Favicons/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="./Template/Assets/Favicons/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="./Template/Assets/Favicons/favicon-16x16.png">
@@ -16,14 +20,21 @@
         <meta name="msapplication-TileColor" content="#5225c0">
         <meta name="theme-color" content="#5225c0">
 
-        <meta property="og:title" content="{{ Title }}">
-        <meta property="og:description" content="{{ Description }}">
+        <meta property="og:title" content="Toyhou.se | API">
+        <meta
+            property="og:description"
+            content="'Tired from copy and pasting characters\' information? Well i got ya, an API for Toyhou.se'"
+        >
         <meta property="og:url" content="https://Toyhouse.novan1ty.repl.co">
         <meta property="og:image" content="https://i.imgur.com/NAR4xuM.png">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:creator" content="@_Novan1ty">
-        <meta name="twitter:description" content="{{ Description }}">
+        <meta
+            name="twitter:description"
+            content="'Tired from copy and pasting characters\' information? Well i got ya, an API for Toyhou.se'"
+        >
         <meta name="twitter:image" content="https://i.imgur.com/NAR4xuM.png">
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="stylesheet" href="./Template/style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,30 +58,12 @@
             <h1>Endpoints</h1>
             
             <section class="Endpoints">
-                <a
-                    href="https://toyhouse.novan1ty.repl.co/creator?url="
-                    target="blank"
-                >Creator</a>
-                <a
-                    href="https://toyhouse.novan1ty.repl.co/character?url="
-                    target="blank"
-                >Character</a>
-                <a
-                    href="https://toyhouse.novan1ty.repl.co/profile?url="
-                    target="blank"
-                >Profile</a>
-                <a
-                    href="https://toyhouse.novan1ty.repl.co/gallery?url="
-                    target="blank"
-                >Gallery</a>
-                <a
-                    href="https://toyhouse.novan1ty.repl.co/creation?url="
-                    target="blank"
-                >Creation</a>
-                <a
-                    href="https://toyhouse.novan1ty.repl.co/tags?url="
-                    target="blank"
-                >Tags</a>
+                {% for Route in Routes %}
+                    <a
+                        href="/{{ Route }}"
+                        target="blank"
+                    >{{ Route.capitalize() }}</a>
+                {% endfor %}
             </section>
         </section>
 

@@ -9,12 +9,16 @@ from flask import Flask, request, render_template
 import requests as Request
 from bs4 import BeautifulSoup
 
-App = Flask('app', template_folder='Template', static_url_path='/Template', static_folder='Template')
+App = Flask(
+    'app', template_folder='Template',
+    static_url_path='/Template', static_folder='Template'
+)
 
 Title = 'Toyhou.se | API'
 Description = 'Tired from copy and pasting characters\' information? Well i got ya, an API for Toyhou.se'
 
-Characters_URL = { 'message': 'You have to provide a character\'s url' }
+Characters_URL = { 'message': 'You have to provide a character\'s url.' }
+User_Message = { 'message': 'You have to provide a username.' }
 
 @App.route('/')
 def Toyhouse():
@@ -26,7 +30,18 @@ def Toyhouse():
 
     return render_template(
         'index.html', Title=Title,
-        Description=Description
+        Description=Description,
+        Routes=[
+            'creator', 'character',
+            'profile', 'gallery',
+            'creation', 'tags',
+            'all', 'stats',
+            'characters', 'arts',
+            'favorites',
+            'registration', 'worlds',
+            'literatures',
+            'username_log'
+        ]
     )
 
 @App.route('/creator')
@@ -147,4 +162,56 @@ def Tags():
 
     return { 'Tags': Tags }
 
-App.run(host="0.0.0.0", port='5656')
+# Stats ~ 11/11/21; November 11, 2021
+
+@App.route('/stats')
+def Stats():
+    User = request.args.get('username')
+    if not User:
+        return User_Message
+    
+    Stats = Request.get(f"https://toyhou.se/{User}/stats").text
+    if 'We can\'t find that page!' in Stats:
+        return User_Message
+
+    Toyhouse = BeautifulSoup(Stats, 'lxml')
+
+    User = Toyhouse.find('span', 'display-user')
+    # print(User)
+    
+    Username = User.a.text
+    Avatar = User.img['src']
+
+    User_Stats = Toyhouse.find('div', 'stats-content').findAll('dl')
+    # print(User_Stats)
+
+    Values = []
+    for Row in User_Stats:
+        Fields = Row.findAll('dd')
+        for Field in Fields:
+            Value = [Character for Character in Field.text]
+            Value = list(
+                filter(lambda Character: Character != '\n', Value)
+            )
+
+            Values.append(''.join(Value))
+
+    # print(Values)
+
+    return {
+        'Username': Username, 'Avatar': Avatar,
+        'Time_Registered': Values[0],
+        'Last_Logged_In': Values[1],
+        'Invited_By': Values[2],
+        'Characters': Values[3],
+        'Images': Values[4],
+        'Literatures': Values[5],
+        'Words': Values[6],
+        'Forum_Posts': Values[7],
+        'Subscribed_To': Values[8],
+        'Subscribed_To_By': Values[9],
+        'Authorizing': Values[10],
+        'Authorized_By': Values[11]
+    }
+
+App.run(host='0.0.0.0', port='5656')
