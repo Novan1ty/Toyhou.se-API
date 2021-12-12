@@ -14,11 +14,14 @@ App = Flask(
     static_url_path='/Template', static_folder='Template'
 )
 
+App.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+
 Title = 'Toyhou.se | API'
 Description = 'Tired from copy and pasting characters\' information? Well i got ya, an API for Toyhou.se'
 
 Characters_URL = { 'message': 'You have to provide a character\'s url.' }
 User_Message = { 'message': 'You have to provide a username.' }
+Page_Message = { 'message': 'Page has to be a number.' }
 
 @App.route('/')
 def Toyhouse():
@@ -32,15 +35,15 @@ def Toyhouse():
         'index.html', Title=Title,
         Description=Description,
         Routes=[
-            'creator', 'character',
-            'profile', 'gallery',
-            'creation', 'tags',
-            'all', 'stats',
-            'characters', 'arts',
-            'favorites',
-            'registration', 'worlds',
-            'literatures',
-            'username_log'
+            'Creator', 'Character',
+            'Profile', 'Gallery',
+            'Creation', 'Tags',
+            'All', 'Stats',
+            'Characters', 'Arts',
+            'Favorites',
+            'Registration', 'Worlds',
+            'Literatures',
+            'Username_Log', 'Links'
         ]
     )
 
@@ -167,8 +170,7 @@ def Tags():
 @App.route('/stats')
 def Stats():
     User = request.args.get('username')
-    if not User:
-        return User_Message
+    if not User: return User_Message
     
     Stats = Request.get(f"https://toyhou.se/{User}/stats").text
     if 'We can\'t find that page!' in Stats:
@@ -213,5 +215,134 @@ def Stats():
         'Authorizing': Values[10],
         'Authorized_By': Values[11]
     }
+
+# Characters & Arts ~ 11/12/21; November 12, 2021
+
+@App.route('/characters')
+def Characters():
+    User = request.args.get('username')
+    Page = request.args.get('page') or 1
+    Return = request.args.get('return') or ''
+    
+    if not User: return User_Message
+
+    try:
+        Page = int(Page)
+    except:
+        return Page_Message
+
+    Return = Return.lower()
+
+    # return { 'Page': Page, 'Return': Return }
+
+    Characters = Request.get(
+        f"https://toyhou.se/{User}/characters/folder:all?page={Page}"
+    ).text
+    if 'Invalid user selected.' in Characters:
+        return User_Message
+
+    Toyhouse = BeautifulSoup(Characters, 'lxml')
+    Characters = []
+
+    Users_Characters = Toyhouse.find('div', 'characters-gallery')
+    Characters_Row = Users_Characters.find('div', 'gallery-row')
+    Characters_List = Characters_Row.findAll('div', 'gallery-item')
+
+    for Character in Characters_List:
+        # print(Character)
+        # break
+
+        Name = Character.find(
+            'div', 'thumb-caption'
+        ).find('span', 'thumb-character-name').text
+        Avatar = Character.find(
+            'div', 'thumb-image'
+        ).a.img['src']
+
+        # if not Name and not Avatar: return
+        if 'name' in Return: Characters.append(Name)
+        elif 'avatar' in Return: Characters.append(Avatar)
+        else:
+            Characters.append({ 'Name': Name, Avatar: Avatar })
+
+    return { 'Characters': Characters }
+
+@App.route('/arts')
+def Arts():
+    User = request.args.get('username')
+    Page = request.args.get('page') or 1
+
+    if not User: return User_Message
+
+    try:
+        Page = int(Page)
+    except:
+        return Page_Message
+
+    Arts = Request.get(
+        f"https://toyhou.se/{User}/art?page={Page}"
+    ).text
+    if 'Invalid user selected.' in Arts:
+        return User_Message
+
+    Toyhouse = BeautifulSoup(Arts, 'lxml')
+    Arts = []
+
+    Gallery = Toyhouse.findAll('li', 'gallery-item')
+    for Art in Gallery:
+        Art = Art.find('div', 'gallery-thumb').a['href']
+        Arts.append(Art)
+
+    return { 'Arts': Arts }
+
+# Favorites & Registration ~ 12/7/21; December 7, 2021
+
+@App.route('/favorites')
+def Favorites():
+    User = request.args.get('username')
+    Page = request.args.get('page') or 1
+
+    if not User: return User_Message
+
+    try:
+        Page = int(Page)
+    except:
+        return Page_Message
+
+    Favorites = Request.get(
+        f"https://toyhou.se/{User}/favorites?page={Page}"
+    ).text
+    if 'Invalid user selected.' in Favorites:
+        return User_Message
+
+    Toyhouse = BeautifulSoup(Favorites, 'lxml')
+    Favorites = []
+
+    Characters = Toyhouse.findAll('div', 'gallery-item')
+    for Character in Characters:
+        Name = Character.find('div', 'thumb-caption').span.text
+        Avatar = Character.find('div', 'thumb-image').a.img['src']
+        Favorites.append({ 'Name': Name, 'Avatar': Avatar })
+    
+    return { 'Favorites': Favorites }
+
+@App.route('/registration')
+def Registration():
+    User = request.args.get('username')
+    if not User: return User_Message
+
+    Stats = Request.get(f"https://toyhou.se/{User}/stats").text
+    if 'Invalid user selected.' in Stats:
+        return User_Message
+
+    Toyhouse = BeautifulSoup(Stats, 'lxml')
+
+    Stats = Toyhouse.find('div', 'stats-content').dl
+    Time_Registered = Stats.find('dd', 'field-value')
+    Registration = Time_Registered.text[1:-1]
+
+    return Registration
+
+
 
 App.run(host='0.0.0.0', port='5656')

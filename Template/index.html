@@ -60,9 +60,9 @@
             <section class="Endpoints">
                 {% for Route in Routes %}
                     <a
-                        href="/{{ Route }}"
+                        href="/{{ Route.lower() }}"
                         target="blank"
-                    >{{ Route.capitalize() }}</a>
+                    >{{ Route }}</a>
                 {% endfor %}
             </section>
         </section>
